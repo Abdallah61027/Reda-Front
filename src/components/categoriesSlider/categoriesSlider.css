@@ -1,0 +1,29 @@
+:root {
+  --main-color: #0090f0;
+  --p-color: #7b7b7b;
+  --bg-color: #f3f3f3;
+  --white-color: #fff;
+  --heading-color: #253237;
+  --border-color: #d6d6d6d5;
+  --main-transition: 0.3s;
+}
+.categories-slide {
+  padding: 50px 0;
+}
+
+/* Start Category */
+
+.category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  cursor: pointer;
+  transition: var(--main-transition);
+}
+.category img {
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+}
