@@ -64,6 +64,7 @@
   margin-bottom: 10px;
   color: var(--heading-color);
   overflow: hidden;
+  text-transform: capitalize;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 1;

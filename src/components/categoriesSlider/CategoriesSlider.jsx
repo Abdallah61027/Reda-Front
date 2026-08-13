@@ -1,4 +1,9 @@
-// import { useRef, useState } from "react";
+import { useCategories } from "../../contexts/CategoriesContext";
+
+// Categories Imports
+import Category from "./Category";
+import "./categoriesSlider.css";
+
 // Swiper Imports
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -7,29 +12,8 @@ import "swiper/css/navigation";
 
 import { Navigation } from "swiper/modules";
 
-// Categories Imports
-import Category from "./Category";
-import "./categoriesSlider.css";
-import { useEffect, useState } from "react";
-import axios from "axios";
-
 function CategoriesSlider() {
-  const [categories, setCategories] = useState([]);
-  useEffect(() => {
-    const getCategories = async () => {
-      try {
-        const response = await axios.get(
-          "https://shop-two-zeta-25.vercel.app/api/v1/categories",
-        );
-        const data = response.data.data;
-        setCategories(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    getCategories();
-  }, []);
-  console.log(categories);
+  const { categories, isLoading } = useCategories();
   return (
     <div className="categories-slide slide">
       <div className="container">

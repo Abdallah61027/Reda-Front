@@ -1,9 +1,12 @@
-function Category({ _id, name, slug, image }) {
+import { Link } from "react-router-dom";
+function Category({ name, slug, image }) {
   return (
-    <div className="category">
-      <img src={image} alt="RealC35" />
-      <h3 className="category-name">{name}</h3>
-    </div>
+    <Link to={`/categories/${slug}`}>
+      <div className="category">
+        <img src={image} alt={name} />
+        <h3 className="category-name">{name}</h3>
+      </div>
+    </Link>
   );
 }
 

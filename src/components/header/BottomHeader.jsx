@@ -1,7 +1,12 @@
-import axios from "axios";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
+
+import {
+  CategoriesContext,
+  useCategories,
+} from "../../contexts/CategoriesContext";
+
 // Icons
 import { IoMenu } from "react-icons/io5";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -19,26 +24,27 @@ const navLinks = [
 export default function BottomHeader() {
   const [openCategories, setOpenCategories] = useState(false);
   const location = useLocation();
-  const [categories, setCategories] = useState([]);
+  const { categories, isLoading } = useCategories(CategoriesContext);
+  const dropdownRef = useRef(null);
   useEffect(() => {
-    const getCategories = async () => {
-      try {
-        const response = await axios.get(
-          "https://shop-two-zeta-25.vercel.app/api/v1/categories",
-        );
-        const data = response.data.data;
-        setCategories(data);
-      } catch (error) {
-        console.error(error);
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpenCategories(false);
       }
     };
-    getCategories();
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
+
   return (
     <div className="bottom-header">
       <div className="container">
         <nav>
-          <div className="category-map">
+          <div className="category-map" ref={dropdownRef}>
             <div
               className="category-button"
               onClick={() => {

@@ -8,7 +8,7 @@
   --main-transition: 0.3s;
 }
 .categories-slide {
-  padding: 50px 0;
+  padding: 20px 0;
 }
 
 /* Start Category */
@@ -26,4 +26,7 @@
   width: 120px;
   height: 120px;
   border-radius: 100%;
+}
+.category h3 {
+  text-transform: capitalize;
 }
